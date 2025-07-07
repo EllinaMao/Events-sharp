@@ -19,7 +19,7 @@ namespace Task1
             Func<string> color = delegate (string x)
             {
                 switch (x.ToLower())
-                {
+                {//
                     case "red":
                         {
                             return "255,0,0";
