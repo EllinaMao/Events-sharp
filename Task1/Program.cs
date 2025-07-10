@@ -1,59 +1,31 @@
 ﻿using System.Security.Cryptography.X509Certificates;
-
+using AnononimMetods;
 namespace Task1
 {
-    internal class Program
+    internal static class Program
     {
         static void Main(string[] args)
         {
-            var colorGetter = RGBColor();
-            Console.WriteLine(colorGetter("red"));
-            Console.WriteLine(colorGetter("green"));
-        }
-            public static Func<string, string> RGBColor()
-        {
-            Func<string, string> colorHandler = delegate (string x)
+            var anon = new Anononim();
+
+            string[] colors = { "красный", "orange", "желтый", "green", "deep sky blue", "синий", "purple", "unknown" };
+
+            foreach (var color in colors)
             {
-                switch (x.ToLower())
+                try
                 {
-                    case "red":
-                        {
-                            return "255,0,0";
-                        }
-                    case "orange":
-                        {
-                            return "255,165,0";
-                        }
-                    case "yellow":
-                        {
-                            return "255,255,0";
-                        }
-                    case "green":
-                        {
-                            return "0,128,0";
-                        }
-                    case "deep sky blue":
-                        {
-                            return "0,191,255";
-                        }
-                    case "blue":
-                        {
-                            return "0,0,255";
-                        }
-                    case "purple":
-                        {
-                            return "128,0,128";
-                        }
-                    default:
-                        {
-                            throw new Exception("Данный цвет не распознан");
-                        }
+                    string rgb = anon.colorHandler(color);
+                    Console.WriteLine($"{color}: {rgb}");
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{color}: {ex.Message}");
+                }
+            }
 
-            };
-            return colorHandler;
+            Console.WriteLine("Нажмите любую кнопку дя выхода");
+            Console.ReadKey();
         }
-
     }
 
     }
